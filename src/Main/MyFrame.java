@@ -47,44 +47,13 @@ import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 
 public class MyFrame extends JFrame {
-    //BD mBD; //cargo mi BBDD
-    //DefaultTableModel mModeloTable; new DefaultTableModel;
-    /*
-    public form(){
-        mBD = new BD("especiesmarinas","root","root");
-        mModeloTable.addColumn("id");
-        mModeloTable.addColumn("especie");
-        mModeloTable.addColumn("tipo");
-        mModeloTable.addColumn("nombre");
-        mModeloTable.addColumn("habitat");
-        mModeloTable.addColumn("sexo");
-        mModeloTable.addColumn("profundidad");
-        mModeloTable.addColumn("pelagico");
-        mModeloTable.addColumn("tiempo_navegacion");
-        mModeloTable.addColumn("nubosidad");
-        mModeloTable.addColumn("fuerza_viento");
-        mModeloTable.addColumn("direccion_viento");
-        mModeloTable.addColumn("hora_llegada");
-        mModeloTable.addColumn("embarcaciones_zona");
-        mModeloTable.addColumn("temperatura_superf");
-        mModeloTable.addColumn("tipo_cebo");
-        mModeloTable.addColumn("parasitos");
-        mModeloTable.addColumn("presencia_azuelos");
-        mModeloTable.addColumn("num_azuelos");
-        mModeloTable.addColumn("medidas");
-
-    }
-    */
-
+    //Parametros DB
     Connection connection = null;
     PreparedStatement pstatment = null;
-    ResultSet rs = null;
-    String server = "mysql-kev.alwaysdata.net";
-    String bbdd = "kev_especiesmarinas";
+    //Parametros DB
     String user = "kev";
     String password = "Gatito.10";
     String sql;
-
 
     //Especies
     private JRadioButton jrbTiburon;
@@ -98,7 +67,6 @@ public class MyFrame extends JFrame {
     private JLabel jlbRaya;
     private JLabel jlbMolusco;
     private JLabel jlbAlga;
-
     private JLabel jlbTipo;
     private JLabel jlbNombre;
     private JLabel jlbHabitat;
@@ -144,9 +112,6 @@ public class MyFrame extends JFrame {
     private JButton jbtCalculate2;
     private JButton jbtCalculate3;
     private JButton jbtCalculate4;
-    private static final int MIN = 0;
-    private static final int MAX = 999;
-    int familyNum;
 
     public MyFrame() {
         this.setSize(800, 700);
@@ -219,7 +184,7 @@ public class MyFrame extends JFrame {
         getContentPane().setLayout(null);
 
         /*
-        //Creamos la Interfaz
+        //Creamos la Interfaz para especies
         //Especies
         jlbEspecie.setText("Especie");
         getContentPane().add(jlbEspecie);
@@ -400,63 +365,12 @@ public class MyFrame extends JFrame {
         });
     }
 
-        /*
-        this.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                MyFrame.this.setDefaultCloseOperation(3);
-            }
-        });
-
-
-        jbtOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt){
-                jbtOkActionPerformed(evt)
-                ;}
-
-            private void jbtOkActionPerformed(java.awt.event.ActionEvent evt) {
-
-                System.out.println("Dentro de la BBDD");
-                Tiburon mtiburon = new Tiburon();
-                System.out.println("Dentro de la BBDD2");
-                if (mBD.conectar()) {
-                    System.out.println("Dentro de la BBDD3");
-                    //hacer el de especie
-                    String tiburon = "tiburon";
-                    mtiburon.setEspecie(tiburon);
-                    mtiburon.setTipo(jtfTipo.getText().trim());
-                    mtiburon.setNombre(jtfNombre.getText().trim());
-                    mtiburon.setHabitat(jtfHabitat.getText().trim());
-                    mtiburon.setSexo(jtfSexo.getText().trim());
-                    int profundidadInt= Integer.parseInt(jtfProfundidad.getText());
-                    mtiburon.setProfundidad(profundidadInt);
-                    mtiburon.setPelagico(jtfPelagico.getText().trim());
-                    int tiempoNavInt= Integer.parseInt(jtfTiempoNavegacion.getText());
-                    mtiburon.setTiempo_navegacion(tiempoNavInt);
-                    mtiburon.setNubosidad(jtfNubosidad.getText().trim());
-                    mtiburon.setFuerza_viento(jtfFuerzaViento.getText().trim());
-                    mtiburon.setDireccion_viento(jtfDireccionViento.getText().trim());
-                    mtiburon.setHora_llegada(jtfHoraLlegada.getText().trim());
-                    int embZonaInt= Integer.parseInt(jtfEmbarcacionesZona.getText());
-                    mtiburon.setEmbarcaciones_zona(embZonaInt);
-                    int tempSupInt= Integer.parseInt(jtfTempSup.getText());
-                    mtiburon.setTemperatura_sup(tempSupInt);
-                    mtiburon.setTipo_cebo(jtfTipoCebo.getText().trim());
-                    mtiburon.setParasitos(jtfParasitos.getText().trim());
-                    mtiburon.setPrecencia_anzuelos(jtfPresAnzuelos.getText().trim());
-                    int numAnzuelosInt= Integer.parseInt(jtfNumAnzuelos.getText());
-                    mtiburon.setNumero_anzuelos(numAnzuelosInt);
-                    mtiburon.setMedidas(jtfMedidas.getText().trim());
-                    mBD.AgregarTiburon(mtiburon);
-                    //aqui poner el mensaje de agregado
-                }
-            }
-        });*/
-
 
     private void jbtOkActionPerformed(ActionEvent evt) throws SQLException {
         boolean productEnter = true;
         Tiburon mtiburon = new Tiburon();
         String tiburon = "tiburon";
+
         mtiburon.setEspecie(tiburon);
         mtiburon.setTipo(jtfTipo.getText().trim());
         mtiburon.setNombre(jtfNombre.getText().trim());
@@ -481,13 +395,11 @@ public class MyFrame extends JFrame {
         int numAnzuelosInt = Integer.parseInt(jtfNumAnzuelos.getText());
         mtiburon.setNumero_anzuelos(numAnzuelosInt);
         mtiburon.setMedidas(jtfMedidas.getText().trim());
+
+
         try {
             connection = DriverManager.getConnection("jdbc:mysql://mysql-kev.alwaysdata.net/kev_especiesmarinas", user, password);
-            sql = "INSERT INTO tiburon (especie, tipo, " +
-                    "nombre, habitat, sexo, profundidad, pelagico, tiempo_navegacion, " +
-                    "nubosidad, fuerza_viento, direccion_viento, hora_llegada, " +
-                    "embarcaciones_zona, temperatura_sup, tipo_cebo, parasitos, " +
-                    "precencia_anzuelos, numero_anzuelos, medidas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            sql = "INSERT INTO tiburon (especie, tipo, nombre, habitat, sexo, profundidad, pelagico, tiempo_navegacion, nubosidad, fuerza_viento, direccion_viento, hora_llegada, embarcaciones_zona, temperatura_superf, tipo_cebo,parasitos,presencia_anzuelos, num_anzuelos, medidas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             try {
                 this.pstatment = connection.prepareStatement(sql);
@@ -512,7 +424,7 @@ public class MyFrame extends JFrame {
                 this.pstatment.setString(19, mtiburon.getMedidas());
                 this.pstatment.executeUpdate();
             } catch (SQLException var15) {
-                JOptionPane.showMessageDialog(this.rootPane, "El codigo ya existe");
+                JOptionPane.showMessageDialog(this.rootPane, "Error en el codigo");
                 System.out.println("Error1");
                 productEnter = false;
             }
@@ -538,16 +450,5 @@ public class MyFrame extends JFrame {
 
     }
 }
-
-
-        /*
-        jbtOk.addActionListener(e -> {
-            try {
-                jbtOkActionPerformed(e);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        });*/
-
 
 
