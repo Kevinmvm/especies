@@ -55,13 +55,14 @@ public class MyFrame extends JFrame {
     String password = "Gatito.10";
     String sql;
 
+    //Definición de parametros para Interfaz
     //Especies
     private JRadioButton jrbTiburon;
     private JRadioButton jrbRaya;
     private JRadioButton jrbMolusco;
     private JRadioButton jrbAlga;
 
-    //Campos especificos
+    //Jlabel de parametros de interfaz
     private JLabel jlbEspecie;
     private JLabel jlbTiburon;
     private JLabel jlbRaya;
@@ -86,6 +87,7 @@ public class MyFrame extends JFrame {
     private JLabel jlbNumAnzuelos;
     private JLabel jlbMedidas;
 
+    //JTextField de parametros de interfaz
     //private JTextField jtfEspecie;
     private JTextField jtfTipo;
     private JTextField jtfNombre;
@@ -106,12 +108,14 @@ public class MyFrame extends JFrame {
     private JTextField jtfNumAnzuelos;
     private JTextField jtfMedidas;
 
-    //Botones
+    ////JButton de parametros de interfaz
     private JButton jbtOk;
+    private JButton jbtOk2;
     private JButton jbtCalculate1;
     private JButton jbtCalculate2;
     private JButton jbtCalculate3;
     private JButton jbtCalculate4;
+
 
     public MyFrame() {
         this.setSize(800, 700);
@@ -120,13 +124,13 @@ public class MyFrame extends JFrame {
     }
 
     private void initComponents() {
-
+        //especies
         jlbEspecie = new JLabel();
         jlbTiburon = new JLabel();
         jlbRaya = new JLabel();
         jlbMolusco = new JLabel();
         jlbAlga = new JLabel();
-
+        //etiquetas
         jlbTipo = new JLabel();
         jlbNombre = new JLabel();
         jlbHabitat = new JLabel();
@@ -146,6 +150,7 @@ public class MyFrame extends JFrame {
         jlbNumAnzuelos = new JLabel();
         jlbMedidas = new JLabel();
 
+        //campos a rellenar
         //jtfEspecie = new JTextField();
         jtfTipo = new JTextField();
         jtfNombre = new JTextField();
@@ -171,6 +176,7 @@ public class MyFrame extends JFrame {
         jrbMolusco = new JRadioButton();
         jrbAlga = new JRadioButton();
         jbtOk = new JButton();
+        jbtOk2 = new JButton();
         jbtCalculate1 = new JButton();
         jbtCalculate2 = new JButton();
         jbtCalculate3 = new JButton();
@@ -219,10 +225,13 @@ public class MyFrame extends JFrame {
         jlbAlga.setBounds(375, 110, 100, 20);
 
         //Ok
-        jbtOk.setText("Ok");
-        getContentPane().add(jbtOk);
-        jbtOk.setBounds(175,150, 100, 20);
-        */
+        jbtOk2.setText("Ok");
+        getContentPane().add(jbtOk2);
+        jbtOk2.setBounds(175,150, 100, 20);
+
+        //Switch Case elección*/
+
+
 
         //Interfaz Tiburon
         this.jlbTipo.setText("Tipo");
@@ -367,7 +376,7 @@ public class MyFrame extends JFrame {
 
 
     private void jbtOkActionPerformed(ActionEvent evt) throws SQLException {
-        boolean productEnter = true;
+        boolean animalEnter = true;
         Tiburon mtiburon = new Tiburon();
         String tiburon = "tiburon";
 
@@ -426,29 +435,22 @@ public class MyFrame extends JFrame {
             } catch (SQLException var15) {
                 JOptionPane.showMessageDialog(this.rootPane, "Error en el codigo");
                 System.out.println("Error1");
-                productEnter = false;
+                animalEnter = false;
             }
         } catch (SQLException var16) {
             var16.printStackTrace();
             System.out.println("Error2");
-            productEnter = false;
+            animalEnter = false;
         } finally {
             this.pstatment.close();
             this.connection.close();
         }
 
-        if (productEnter) {
+        if (animalEnter) {
             JOptionPane.showMessageDialog(this.rootPane, "Registro añadido correctamente");
         }
     }
 
-    private void onlyChar(KeyEvent evt) {
-        char c = evt.getKeyChar();
-        if (!Character.isLetter(evt.getKeyChar()) && !Character.isWhitespace(evt.getKeyChar())) {
-            evt.consume();
-        }
-
-    }
 }
 
 

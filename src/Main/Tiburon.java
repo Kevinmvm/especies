@@ -6,32 +6,6 @@ public class Tiburon {
             fuerza_viento, direccion_viento, hora_llegada, tipo_cebo, parasitos,
             precencia_anzuelos, medidas;
     private int profundidad, tiempo_navegacion, embarcaciones_zona, temperatura_sup, numero_anzuelos;
-    /*
-    public Tiburon (String especie ,String tipo,String nombre,String habitat,String sexo, String pelagico,
-                 String nubosidad,String fuerza_viento,String direccion_viento,String hora_llegada,
-                 String tipo_cebo, String parasitos, String precencia_anzuelos,String medidas,
-                 int profundidad, int tiempo_navegacion, int embarcaciones_zona,
-                 int temperatura_sup, int numero_anzuelos){
-        this.especie = especie;
-        this.tipo = tipo;
-        this.nombre = nombre;
-        this.habitat = habitat;
-        this.sexo = sexo;
-        this.profundidad = profundidad;
-        this.pelagico = pelagico;
-        this.tiempo_navegacion = tiempo_navegacion;
-        this.nubosidad = nubosidad;
-        this.fuerza_viento = fuerza_viento;
-        this.direccion_viento = direccion_viento;
-        this.hora_llegada = hora_llegada;
-        this.embarcaciones_zona = embarcaciones_zona;
-        this.temperatura_sup = temperatura_sup;
-        this.tipo_cebo = tipo_cebo;
-        this.parasitos = parasitos;
-        this.precencia_anzuelos = precencia_anzuelos;
-        this.numero_anzuelos = numero_anzuelos;
-        this.medidas = medidas;
-    }*/
 
     public String getId() {
         return id;
