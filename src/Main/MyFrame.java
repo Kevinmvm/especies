@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import static java.awt.EventQueue.invokeLater;
 
 public class MyFrame extends JFrame implements ActionListener{
@@ -18,6 +20,7 @@ public class MyFrame extends JFrame implements ActionListener{
     private JButton jbtRaya;
     private JButton jbtMolusco;
     private JButton jbtAlga;
+    private JButton jbtExit;
 
 
     public MyFrame(){
@@ -39,6 +42,7 @@ public class MyFrame extends JFrame implements ActionListener{
         jbtRaya = new JButton();
         jbtMolusco = new JButton();
         jbtAlga = new JButton();
+        jbtExit = new JButton();
 
         //Creamos la interfaz para especies:
         this.jbtTiburon.setText("Tiburon");
@@ -56,6 +60,17 @@ public class MyFrame extends JFrame implements ActionListener{
         this.jbtAlga.setText("Alga");
         this.getContentPane().add(this.jbtAlga);
         this.jbtAlga.setBounds(650, 300, 100, 20);
+
+        this.jbtExit.setText("Salir");
+        this.getContentPane().add(this.jbtExit);
+        this.jbtExit.setBounds(350, 650, 100, 20);
+        this.jbtExit.addActionListener((e) -> {
+            try {
+                this.jbtExitActionPerformed(e);
+            } catch (SQLException var3) {
+                var3.printStackTrace();
+            }
+        });
     }
 
     //Inicializamos nuestra App
@@ -89,7 +104,14 @@ public class MyFrame extends JFrame implements ActionListener{
             panelAlga.setVisible(true);
             this.dispose();
         }
+
     }
+
+    private void jbtExitActionPerformed(ActionEvent ae) throws SQLException {
+        System.exit(0);
+    }
+
+
 }
 
 

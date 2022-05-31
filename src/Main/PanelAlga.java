@@ -209,7 +209,6 @@ public class PanelAlga extends JFrame implements ActionListener {
             } catch (SQLException var3) {
                 var3.printStackTrace();
             }
-
         });
     }
 
