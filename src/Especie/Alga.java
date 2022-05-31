@@ -2,7 +2,7 @@ package Especie;
 
 public class Alga {
     private String id, especie, tipo, nombre, habitat, nubosidad,
-            fuerza_viento, direccion_viento, hora_llegada, medidas;
+            fuerza_viento, direccion_viento, hora_llegada;
     private int profundidad, tiempo_navegacion, embarcaciones_zona, temperatura_sup;
 
     public String getId() {
@@ -75,14 +75,6 @@ public class Alga {
 
     public void setHora_llegada(String hora_llegada) {
         this.hora_llegada = hora_llegada;
-    }
-
-    public String getMedidas() {
-        return medidas;
-    }
-
-    public void setMedidas(String medidas) {
-        this.medidas = medidas;
     }
 
     public int getProfundidad() {

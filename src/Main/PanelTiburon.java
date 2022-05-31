@@ -19,7 +19,10 @@ public class PanelTiburon extends JFrame implements ActionListener {
     String password = "Gatito.10";
     String sql;
 
+    //Creamos un panel nuevo para tiburon
     private JPanel contenedorTib;
+
+    //Creamos etiquetas para tiburon
     private JLabel jlbTipo;
     private JLabel jlbNombre;
     private JLabel jlbHabitat;
@@ -39,6 +42,7 @@ public class PanelTiburon extends JFrame implements ActionListener {
     private JLabel jlbNumAnzuelos;
     private JLabel jlbMedidas;
 
+    //Creamos campos de texto para tiburon
     private JTextField jtfTipo;
     private JTextField jtfNombre;
     private JTextField jtfHabitat;
@@ -58,21 +62,24 @@ public class PanelTiburon extends JFrame implements ActionListener {
     private JTextField jtfNumAnzuelos;
     private JTextField jtfMedidas;
 
+    //Creamos botones para tiburon
     private JButton jbtCalculate1;
     private JButton jbtCalculate2;
     private JButton jbtCalculate3;
     private JButton jbtCalculate4;
     private JButton jbtOk;
 
+    //Generamos el panel para tiburon
     public PanelTiburon() {
-        this.setSize(790, 690);
+        this.setSize(800, 700);
         this.setTitle("Especies Marinas");
         initComponents();
         this.add(contenedorTib);
     }
 
+    //iniciamos todos los valores que creamos anteriormente
     private void initComponents() {
-        //especies
+        //especie
         contenedorTib = new JPanel();
 
         //etiquetas
@@ -115,6 +122,7 @@ public class PanelTiburon extends JFrame implements ActionListener {
         jtfNumAnzuelos = new JTextField();
         jtfMedidas = new JTextField();
 
+        //botones
         jbtOk = new JButton();
         jbtCalculate1 = new JButton();
         jbtCalculate2 = new JButton();
@@ -251,23 +259,25 @@ public class PanelTiburon extends JFrame implements ActionListener {
         //Ok
         this.jbtOk.setText("Ok");
         this.getContentPane().add(this.jbtOk);
-        this.jbtOk.setBounds(400, 600, 100, 20);
+        this.jbtOk.setBounds(350, 600, 100, 20);
         this.jbtOk.addActionListener((e) -> {
             try {
                 this.jbtOkActionPerformed(e);
             } catch (SQLException var3) {
                 var3.printStackTrace();
             }
-
         });
 
     }
 
     private void jbtOkActionPerformed(ActionEvent evt) throws SQLException {
+        //Validador
         boolean animalEnter = true;
+        //Construimos un nuevo objeto molusco
         Tiburon mtiburon = new Tiburon();
-        String tiburon = "tiburon";
 
+        //Obtenemos los valores de los campos que rellenamos para añadirlo a nuestro constructor
+        String tiburon = "tiburon";
         mtiburon.setEspecie(tiburon);
         mtiburon.setTipo(jtfTipo.getText().trim());
         mtiburon.setNombre(jtfNombre.getText().trim());
@@ -293,7 +303,7 @@ public class PanelTiburon extends JFrame implements ActionListener {
         mtiburon.setNumero_anzuelos(numAnzuelosInt);
         mtiburon.setMedidas(jtfMedidas.getText().trim());
 
-
+        //Conexión A BBDD y insert de datos
         try {
             connection = DriverManager.getConnection("jdbc:mysql://mysql-kev.alwaysdata.net/kev_especiesmarinas", user, password);
             sql = "INSERT INTO tiburon (especie, tipo, nombre, habitat, sexo, profundidad, pelagico, tiempo_navegacion, nubosidad, fuerza_viento, direccion_viento, hora_llegada, embarcaciones_zona, temperatura_superf, tipo_cebo,parasitos,presencia_anzuelos, num_anzuelos, medidas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

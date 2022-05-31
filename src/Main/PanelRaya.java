@@ -1,5 +1,6 @@
 package Main;
 
+import Especie.Raya;
 import Especie.Tiburon;
 
 import javax.swing.*;
@@ -19,7 +20,10 @@ public class PanelRaya extends JFrame implements ActionListener {
     String password = "Gatito.10";
     String sql;
 
+    //Creamos un panel nuevo para raya
     private JPanel contenedorRaya;
+
+    //Creamos etiquetas para raya
     private JLabel jlbTipo;
     private JLabel jlbNombre;
     private JLabel jlbHabitat;
@@ -39,6 +43,7 @@ public class PanelRaya extends JFrame implements ActionListener {
     private JLabel jlbNumAnzuelos;
     private JLabel jlbMedidas;
 
+    //Creamos campos de texto para raya
     private JTextField jtfTipo;
     private JTextField jtfNombre;
     private JTextField jtfHabitat;
@@ -58,21 +63,23 @@ public class PanelRaya extends JFrame implements ActionListener {
     private JTextField jtfNumAnzuelos;
     private JTextField jtfMedidas;
 
+    //Creamos botones para raya
     private JButton jbtCalculate1;
     private JButton jbtCalculate2;
     private JButton jbtCalculate3;
     private JButton jbtCalculate4;
     private JButton jbtOk;
 
+    //Generamos el panel para raya
     public PanelRaya() {
-        this.setSize(790, 690);
+        this.setSize(800, 700);
         this.setTitle("Especies Marinas");
         initComponents();
         this.add(contenedorRaya);
     }
-
+    //iniciamos todos los valores que creamos anteriormente
     private void initComponents() {
-        //especies
+        //especie
         contenedorRaya = new JPanel();
 
         //etiquetas
@@ -115,6 +122,7 @@ public class PanelRaya extends JFrame implements ActionListener {
         jtfNumAnzuelos = new JTextField();
         jtfMedidas = new JTextField();
 
+        //botones
         jbtOk = new JButton();
         jbtCalculate1 = new JButton();
         jbtCalculate2 = new JButton();
@@ -251,7 +259,7 @@ public class PanelRaya extends JFrame implements ActionListener {
         //Ok
         this.jbtOk.setText("Ok");
         this.getContentPane().add(this.jbtOk);
-        this.jbtOk.setBounds(400, 600, 100, 20);
+        this.jbtOk.setBounds(350, 600, 100, 20);
         this.jbtOk.addActionListener((e) -> {
             try {
                 this.jbtOkActionPerformed(e);
@@ -264,61 +272,65 @@ public class PanelRaya extends JFrame implements ActionListener {
     }
 
     private void jbtOkActionPerformed(ActionEvent evt) throws SQLException {
+        //Validador
         boolean animalEnter = true;
-        Tiburon mtiburon = new Tiburon();
-        String tiburon = "tiburon";
 
-        mtiburon.setEspecie(tiburon);
-        mtiburon.setTipo(jtfTipo.getText().trim());
-        mtiburon.setNombre(jtfNombre.getText().trim());
-        mtiburon.setHabitat(jtfHabitat.getText().trim());
-        mtiburon.setSexo(jtfSexo.getText().trim());
+        //Construimos un nuevo objeto molusco
+        Raya mraya = new Raya();
+
+        //Obtenemos los valores de los campos que rellenamos para añadirlo a nuestro constructor
+        String raya = "raya";
+        mraya.setEspecie(raya);
+        mraya.setTipo(jtfTipo.getText().trim());
+        mraya.setNombre(jtfNombre.getText().trim());
+        mraya.setHabitat(jtfHabitat.getText().trim());
+        mraya.setSexo(jtfSexo.getText().trim());
         int profundidadInt = Integer.parseInt(jtfProfundidad.getText());
-        mtiburon.setProfundidad(profundidadInt);
-        mtiburon.setPelagico(jtfPelagico.getText().trim());
+        mraya.setProfundidad(profundidadInt);
+        mraya.setPelagico(jtfPelagico.getText().trim());
         int tiempoNavInt = Integer.parseInt(jtfTiempoNavegacion.getText());
-        mtiburon.setTiempo_navegacion(tiempoNavInt);
-        mtiburon.setNubosidad(jtfNubosidad.getText().trim());
-        mtiburon.setFuerza_viento(jtfFuerzaViento.getText().trim());
-        mtiburon.setDireccion_viento(jtfDireccionViento.getText().trim());
-        mtiburon.setHora_llegada(jtfHoraLlegada.getText().trim());
+        mraya.setTiempo_navegacion(tiempoNavInt);
+        mraya.setNubosidad(jtfNubosidad.getText().trim());
+        mraya.setFuerza_viento(jtfFuerzaViento.getText().trim());
+        mraya.setDireccion_viento(jtfDireccionViento.getText().trim());
+        mraya.setHora_llegada(jtfHoraLlegada.getText().trim());
         int embZonaInt = Integer.parseInt(jtfEmbarcacionesZona.getText());
-        mtiburon.setEmbarcaciones_zona(embZonaInt);
+        mraya.setEmbarcaciones_zona(embZonaInt);
         int tempSupInt = Integer.parseInt(jtfTempSup.getText());
-        mtiburon.setTemperatura_sup(tempSupInt);
-        mtiburon.setTipo_cebo(jtfTipoCebo.getText().trim());
-        mtiburon.setParasitos(jtfParasitos.getText().trim());
-        mtiburon.setPrecencia_anzuelos(jtfPresAnzuelos.getText().trim());
+        mraya.setTemperatura_sup(tempSupInt);
+        mraya.setTipo_cebo(jtfTipoCebo.getText().trim());
+        mraya.setParasitos(jtfParasitos.getText().trim());
+        mraya.setPrecencia_anzuelos(jtfPresAnzuelos.getText().trim());
         int numAnzuelosInt = Integer.parseInt(jtfNumAnzuelos.getText());
-        mtiburon.setNumero_anzuelos(numAnzuelosInt);
-        mtiburon.setMedidas(jtfMedidas.getText().trim());
+        mraya.setNumero_anzuelos(numAnzuelosInt);
+        mraya.setMedidas(jtfMedidas.getText().trim());
 
-
+        //Conexión A BBDD y insert de datos
         try {
             connection = DriverManager.getConnection("jdbc:mysql://mysql-kev.alwaysdata.net/kev_especiesmarinas", user, password);
             sql = "INSERT INTO raya (especie, tipo, nombre, habitat, sexo, profundidad, pelagico, tiempo_navegacion, nubosidad, fuerza_viento, direccion_viento, hora_llegada, embarcaciones_zona, temperatura_superf, tipo_cebo,parasitos,presencia_anzuelos, num_anzuelos, medidas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             try {
                 this.pstatment = connection.prepareStatement(sql);
-                this.pstatment.setString(1, mtiburon.getEspecie());
-                this.pstatment.setString(2, mtiburon.getTipo());
-                this.pstatment.setString(3, mtiburon.getNombre());
-                this.pstatment.setString(4, mtiburon.getHabitat());
-                this.pstatment.setString(5, mtiburon.getSexo());
-                this.pstatment.setInt(6, mtiburon.getProfundidad());
-                this.pstatment.setString(7, mtiburon.getPelagico());
-                this.pstatment.setInt(8, mtiburon.getTiempo_navegacion());
-                this.pstatment.setString(9, mtiburon.getNubosidad());
-                this.pstatment.setString(10, mtiburon.getFuerza_viento());
-                this.pstatment.setString(11, mtiburon.getDireccion_viento());
-                this.pstatment.setString(12, mtiburon.getHora_llegada());
-                this.pstatment.setInt(13, mtiburon.getEmbarcaciones_zona());
-                this.pstatment.setInt(14, mtiburon.getTemperatura_sup());
-                this.pstatment.setString(15, mtiburon.getTipo_cebo());
-                this.pstatment.setString(16, mtiburon.getParasitos());
-                this.pstatment.setString(17, mtiburon.getPrecencia_anzuelos());
-                this.pstatment.setInt(18, mtiburon.getNumero_anzuelos());
-                this.pstatment.setString(19, mtiburon.getMedidas());
+                this.pstatment.setString(1, mraya.getEspecie());
+                this.pstatment.setString(2, mraya.getTipo());
+                this.pstatment.setString(3, mraya.getNombre());
+                this.pstatment.setString(4, mraya.getHabitat());
+                this.pstatment.setString(5, mraya.getSexo());
+                this.pstatment.setInt(6, mraya.getProfundidad());
+                this.pstatment.setString(7, mraya.getPelagico());
+                this.pstatment.setInt(8, mraya.getTiempo_navegacion());
+                this.pstatment.setString(9, mraya.getNubosidad());
+                this.pstatment.setString(10, mraya.getFuerza_viento());
+                this.pstatment.setString(11, mraya.getDireccion_viento());
+                this.pstatment.setString(12, mraya.getHora_llegada());
+                this.pstatment.setInt(13, mraya.getEmbarcaciones_zona());
+                this.pstatment.setInt(14, mraya.getTemperatura_sup());
+                this.pstatment.setString(15, mraya.getTipo_cebo());
+                this.pstatment.setString(16, mraya.getParasitos());
+                this.pstatment.setString(17, mraya.getPrecencia_anzuelos());
+                this.pstatment.setInt(18, mraya.getNumero_anzuelos());
+                this.pstatment.setString(19, mraya.getMedidas());
                 this.pstatment.executeUpdate();
             } catch (SQLException var15) {
                 JOptionPane.showMessageDialog(this.rootPane, "Error en el codigo");
