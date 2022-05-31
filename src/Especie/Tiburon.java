@@ -1,10 +1,11 @@
-package Main;
+package Especie;
 
-public class Molusco {
-    private String id, especie, tipo, nombre, habitat, sexo, nubosidad,
-            fuerza_viento, direccion_viento, hora_llegada, medidas;
-    private int profundidad, tiempo_navegacion, embarcaciones_zona, temperatura_sup;
+public class Tiburon {
 
+    private String id, especie, tipo, nombre, habitat, sexo,  pelagico, nubosidad,
+            fuerza_viento, direccion_viento, hora_llegada, tipo_cebo, parasitos,
+            precencia_anzuelos, medidas;
+    private int profundidad, tiempo_navegacion, embarcaciones_zona, temperatura_sup, numero_anzuelos;
 
     public String getId() {
         return id;
@@ -54,6 +55,14 @@ public class Molusco {
         this.sexo = sexo;
     }
 
+    public String getPelagico() {
+        return pelagico;
+    }
+
+    public void setPelagico(String pelagico) {
+        this.pelagico = pelagico;
+    }
+
     public String getNubosidad() {
         return nubosidad;
     }
@@ -84,6 +93,30 @@ public class Molusco {
 
     public void setHora_llegada(String hora_llegada) {
         this.hora_llegada = hora_llegada;
+    }
+
+    public String getTipo_cebo() {
+        return tipo_cebo;
+    }
+
+    public void setTipo_cebo(String tipo_cebo) {
+        this.tipo_cebo = tipo_cebo;
+    }
+
+    public String getParasitos() {
+        return parasitos;
+    }
+
+    public void setParasitos(String parasitos) {
+        this.parasitos = parasitos;
+    }
+
+    public String getPrecencia_anzuelos() {
+        return precencia_anzuelos;
+    }
+
+    public void setPrecencia_anzuelos(String precencia_anzuelos) {
+        this.precencia_anzuelos = precencia_anzuelos;
     }
 
     public String getMedidas() {
@@ -125,4 +158,13 @@ public class Molusco {
     public void setTemperatura_sup(int temperatura_sup) {
         this.temperatura_sup = temperatura_sup;
     }
+
+    public int getNumero_anzuelos() {
+        return numero_anzuelos;
+    }
+
+    public void setNumero_anzuelos(int numero_anzuelos) {
+        this.numero_anzuelos = numero_anzuelos;
+    }
+
 }
