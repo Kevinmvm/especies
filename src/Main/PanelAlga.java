@@ -1,9 +1,6 @@
 package Main;
 
-
 import Especie.Alga;
-import Especie.Molusco;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -286,7 +283,6 @@ public class PanelAlga extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this.rootPane, "Registro añadido correctamente");
         }
     }
-
 
     @Override
     public void actionPerformed(ActionEvent ae) {

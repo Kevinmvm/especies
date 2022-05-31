@@ -1,8 +1,6 @@
 package Main;
 
 import Especie.Molusco;
-import Especie.Tiburon;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
