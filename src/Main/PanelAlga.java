@@ -56,6 +56,9 @@ public class PanelAlga extends JFrame implements ActionListener {
     private JButton jbtCalculate3;
     private JButton jbtCalculate4;
     private JButton jbtOk;
+    private JButton jbtBefore;
+
+
 
     //Generamos el panel para alga
     public PanelAlga() {
@@ -63,6 +66,7 @@ public class PanelAlga extends JFrame implements ActionListener {
         this.setTitle("Especies Marinas");
         initComponents();
         this.add(contenedorAlga);
+
     }
 
     //iniciamos todos los valores que creamos anteriormente
@@ -102,6 +106,7 @@ public class PanelAlga extends JFrame implements ActionListener {
         jbtCalculate2 = new JButton();
         jbtCalculate3 = new JButton();
         jbtCalculate4 = new JButton();
+        jbtBefore = new JButton();
 
         //Interfaz Alga
         this.jlbTipo.setText("Tipo");
@@ -182,9 +187,9 @@ public class PanelAlga extends JFrame implements ActionListener {
         this.jtfTempSup.setBounds(220, 328, 550, 20);
 
         //Ok
-        this.jbtOk.setText("Ok");
+        this.jbtOk.setText("Añadir registro");
         this.getContentPane().add(this.jbtOk);
-        this.jbtOk.setBounds(350, 600, 100, 20);
+        this.jbtOk.setBounds(650, 600, 100, 20);
         this.jbtOk.addActionListener((e) -> {
             try {
                 this.jbtOkActionPerformed(e);
@@ -194,8 +199,31 @@ public class PanelAlga extends JFrame implements ActionListener {
 
         });
 
+        //Boton atras
+        this.jbtBefore.setText("Volver");
+        this.getContentPane().add(this.jbtBefore);
+        this.jbtBefore.setBounds(50, 600, 100, 20);
+        this.jbtBefore.addActionListener((e) -> {
+            try {
+                this.jbtBeforeActionPerformed(e);
+            } catch (SQLException var3) {
+                var3.printStackTrace();
+            }
+
+        });
     }
 
+    //Acción para volver hacia atras
+    private void jbtBeforeActionPerformed(ActionEvent ae) throws SQLException{
+        Object evt = ae.getSource();
+        if(evt.equals(jbtBefore)){
+            MyFrame retFrame = new MyFrame();
+            retFrame.setVisible(true);
+            this.dispose();
+        }
+    }
+
+    //Boton para añadir registros
     private void jbtOkActionPerformed(ActionEvent evt) throws SQLException {
         //Validador
         boolean animalEnter = true;
@@ -260,8 +288,10 @@ public class PanelAlga extends JFrame implements ActionListener {
         }
     }
 
+
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ae) {
 
     }
 }
+

@@ -69,6 +69,7 @@ public class PanelRaya extends JFrame implements ActionListener {
     private JButton jbtCalculate3;
     private JButton jbtCalculate4;
     private JButton jbtOk;
+    private JButton jbtBefore;
 
     //Generamos el panel para raya
     public PanelRaya() {
@@ -123,6 +124,7 @@ public class PanelRaya extends JFrame implements ActionListener {
         jtfMedidas = new JTextField();
 
         //botones
+        jbtBefore = new JButton();
         jbtOk = new JButton();
         jbtCalculate1 = new JButton();
         jbtCalculate2 = new JButton();
@@ -257,9 +259,9 @@ public class PanelRaya extends JFrame implements ActionListener {
         this.jtfMedidas.setBounds(220, 538, 550, 20);
 
         //Ok
-        this.jbtOk.setText("Ok");
+        this.jbtOk.setText("Añadir registro");
         this.getContentPane().add(this.jbtOk);
-        this.jbtOk.setBounds(350, 600, 100, 20);
+        this.jbtOk.setBounds(650, 600, 100, 20);
         this.jbtOk.addActionListener((e) -> {
             try {
                 this.jbtOkActionPerformed(e);
@@ -269,7 +271,31 @@ public class PanelRaya extends JFrame implements ActionListener {
 
         });
 
+        //Boton atras
+        this.jbtBefore.setText("Volver");
+        this.getContentPane().add(this.jbtBefore);
+        this.jbtBefore.setBounds(50, 600, 100, 20);
+        this.jbtBefore.addActionListener((e) -> {
+            try {
+                this.jbtBeforeActionPerformed(e);
+            } catch (SQLException var3) {
+                var3.printStackTrace();
+            }
+
+        });
     }
+
+    //Acción para volver hacia atras
+    private void jbtBeforeActionPerformed(ActionEvent ae) throws SQLException{
+        Object evt = ae.getSource();
+        if(evt.equals(jbtBefore)){
+            MyFrame retFrame = new MyFrame();
+            retFrame.setVisible(true);
+            this.dispose();
+        }
+    }
+
+    //Boton para añadir registros
 
     private void jbtOkActionPerformed(ActionEvent evt) throws SQLException {
         //Validador
