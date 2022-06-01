@@ -55,8 +55,6 @@ public class PanelAlga extends JFrame implements ActionListener {
     private JButton jbtOk;
     private JButton jbtBefore;
 
-
-
     //Generamos el panel para alga
     public PanelAlga() {
         this.setSize(800, 700);

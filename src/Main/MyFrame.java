@@ -18,7 +18,11 @@ import static java.awt.EventQueue.invokeLater;
 
 public class MyFrame extends JFrame implements ActionListener{
 
-    //Definición de parametros para Interfaz
+    /**
+     * Definición de parametros para Interfaz
+     * Luego los llamaremos para trabajar con ellos
+     */
+
     //Definimos un Panel
     private JPanel contenedor;
 
@@ -70,7 +74,7 @@ public class MyFrame extends JFrame implements ActionListener{
 
         this.jbtExit.setText("Salir");
         this.getContentPane().add(this.jbtExit);
-        this.jbtExit.setBounds(350, 650, 100, 20);
+        this.jbtExit.setBounds(350, 600, 100, 20);
         this.jbtExit.addActionListener((e) -> {
             try {
                 this.jbtExitActionPerformed(e);
@@ -90,7 +94,10 @@ public class MyFrame extends JFrame implements ActionListener{
         });
     }
 
-    //Aqui escogemos la interfaz que usaremos para añadir datos a la BBDD
+    /**
+     * Aqui escogemos la interfaz que usaremos
+     * para añadir datos a la BBDD
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         Object evt = ae.getSource();
